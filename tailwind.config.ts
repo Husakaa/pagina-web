@@ -48,9 +48,9 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         luxury: {
-          gold: "hsl(var(--luxury-gold))",
-          "gold-light": "hsl(var(--luxury-gold-light))",
-          "gold-dark": "hsl(var(--luxury-gold-dark))",
+          neon: "hsl(var(--luxury-neon))",
+          "neon-light": "hsl(var(--luxury-neon-light))",
+          "neon-dark": "hsl(var(--luxury-neon-dark))",
         },
       },
       borderRadius: {
