@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 98%;
     
-    /* Accent: Premium gold */
-    --accent: 43 74% 66%;
+    /* Accent: Neon blue */
+    --accent: 200 95% 65%;
     --accent-foreground: 220 20% 8%;
     
     /* Muted: Soft neutral */
@@ -39,14 +39,14 @@ All colors MUST be HSL.
     
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 43 74% 66%;
+    --ring: 200 95% 65%;
     
     --radius: 0.75rem;
     
     /* Custom luxury tokens */
-    --luxury-gold: 43 74% 66%;
-    --luxury-gold-light: 43 74% 76%;
-    --luxury-gold-dark: 43 74% 56%;
+    --luxury-neon: 200 95% 65%;
+    --luxury-neon-light: 200 95% 75%;
+    --luxury-neon-dark: 200 95% 55%;
     
     --hero-gradient-start: 220 15% 98%;
     --hero-gradient-end: 220 15% 94%;
@@ -72,7 +72,7 @@ All colors MUST be HSL.
     --secondary: 220 15% 16%;
     --secondary-foreground: 0 0% 98%;
     
-    --accent: 43 74% 66%;
+    --accent: 200 95% 65%;
     --accent-foreground: 220 20% 8%;
     
     --muted: 220 15% 16%;
@@ -83,7 +83,7 @@ All colors MUST be HSL.
     
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 43 74% 66%;
+    --ring: 200 95% 65%;
     
     --hero-gradient-start: 220 20% 10%;
     --hero-gradient-end: 220 20% 8%;
@@ -110,7 +110,7 @@ All colors MUST be HSL.
 
 @layer utilities {
   .text-gradient-gold {
-    @apply bg-gradient-to-r from-[hsl(var(--luxury-gold-light))] via-[hsl(var(--luxury-gold))] to-[hsl(var(--luxury-gold-dark))] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[hsl(var(--luxury-neon-light))] via-[hsl(var(--luxury-neon))] to-[hsl(var(--luxury-neon-dark))] bg-clip-text text-transparent;
   }
   
   .shadow-luxury {
