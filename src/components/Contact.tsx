@@ -82,7 +82,7 @@ export const Contact = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
-                  className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105"
+                  className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow"
                   onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
                 >
                   Reservar mi Espacio

@@ -133,7 +133,7 @@ export const Process = () => {
             </p>
             <button
               onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105"
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-accent hover:bg-accent/90 text-accent-foreground font-semibold shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow"
             >
               Agenda tu Consulta Gratuita
             </button>

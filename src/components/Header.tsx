@@ -94,7 +94,7 @@ export const Header = () => {
             </Button>
 
             <Button
-              className="hidden sm:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground"
+              className="hidden sm:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground neon-glow hover:scale-105 transition-all duration-300"
               onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
             >
               Agendar Llamada
@@ -126,7 +126,7 @@ export const Header = () => {
                 </button>
               ))}
               <Button
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-2"
+                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-2 neon-glow"
                 onClick={() => {
                   (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' });
                   setIsMenuOpen(false);
