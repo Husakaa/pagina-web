@@ -133,7 +133,7 @@ export const Hero = () => {
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
           Automatización Premium
           <br />
-          <span className="text-gradient-gold">para tu Negocio</span>
+          <span className="text-gradient-gold neon-text">para tu Negocio</span>
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 font-light">
@@ -145,7 +145,7 @@ export const Hero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
           <Button
             size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow"
             onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
           >
             Solicita tu Demo

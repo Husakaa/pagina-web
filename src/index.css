@@ -26,8 +26,8 @@ All colors MUST be HSL.
     --secondary: 220 15% 20%;
     --secondary-foreground: 0 0% 98%;
     
-    /* Accent: Neon blue */
-    --accent: 200 95% 65%;
+    /* Accent: Bright neon blue */
+    --accent: 195 100% 70%;
     --accent-foreground: 220 20% 8%;
     
     /* Muted: Soft neutral */
@@ -39,14 +39,16 @@ All colors MUST be HSL.
     
     --border: 220 13% 91%;
     --input: 220 13% 91%;
-    --ring: 200 95% 65%;
+    --ring: 195 100% 70%;
     
     --radius: 0.75rem;
     
     /* Custom luxury tokens */
-    --luxury-neon: 200 95% 65%;
-    --luxury-neon-light: 200 95% 75%;
-    --luxury-neon-dark: 200 95% 55%;
+    --luxury-neon: 195 100% 70%;
+    --luxury-neon-light: 195 100% 80%;
+    --luxury-neon-dark: 195 100% 60%;
+    --neon-glow: 195 100% 70%;
+    --neon-shadow: 0 0 20px hsl(195 100% 70% / 0.5), 0 0 40px hsl(195 100% 70% / 0.3), 0 0 60px hsl(195 100% 70% / 0.2);
     
     --hero-gradient-start: 220 15% 98%;
     --hero-gradient-end: 220 15% 94%;
@@ -72,7 +74,7 @@ All colors MUST be HSL.
     --secondary: 220 15% 16%;
     --secondary-foreground: 0 0% 98%;
     
-    --accent: 200 95% 65%;
+    --accent: 195 100% 70%;
     --accent-foreground: 220 20% 8%;
     
     --muted: 220 15% 16%;
@@ -83,7 +85,10 @@ All colors MUST be HSL.
     
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 200 95% 65%;
+    --ring: 195 100% 70%;
+    
+    --neon-glow: 195 100% 70%;
+    --neon-shadow: 0 0 20px hsl(195 100% 70% / 0.6), 0 0 40px hsl(195 100% 70% / 0.4), 0 0 60px hsl(195 100% 70% / 0.2);
     
     --hero-gradient-start: 220 20% 10%;
     --hero-gradient-end: 220 20% 8%;
@@ -114,11 +119,11 @@ All colors MUST be HSL.
   }
   
   .shadow-luxury {
-    box-shadow: 0 20px 60px -15px hsl(var(--shadow-luxury) / 0.15);
+    box-shadow: 0 20px 60px -15px hsl(var(--shadow-luxury) / 0.15), var(--neon-shadow);
   }
   
   .shadow-luxury-lg {
-    box-shadow: 0 30px 80px -20px hsl(var(--shadow-luxury) / 0.25);
+    box-shadow: 0 30px 80px -20px hsl(var(--shadow-luxury) / 0.25), var(--neon-shadow);
   }
   
   .animate-float {
@@ -127,6 +132,16 @@ All colors MUST be HSL.
   
   .animate-glow {
     animation: glow 3s ease-in-out infinite;
+  }
+  
+  .neon-glow {
+    box-shadow: var(--neon-shadow);
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 10px hsl(var(--neon-glow) / 0.8),
+                 0 0 20px hsl(var(--neon-glow) / 0.6),
+                 0 0 30px hsl(var(--neon-glow) / 0.4);
   }
   
   @keyframes float {
@@ -141,9 +156,11 @@ All colors MUST be HSL.
   @keyframes glow {
     0%, 100% {
       opacity: 0.5;
+      filter: drop-shadow(0 0 5px hsl(var(--neon-glow)));
     }
     50% {
       opacity: 1;
+      filter: drop-shadow(0 0 20px hsl(var(--neon-glow)));
     }
   }
 }
