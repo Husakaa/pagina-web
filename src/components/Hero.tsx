@@ -5,6 +5,7 @@ import { ChevronDown, Sparkles } from 'lucide-react';
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  // ... (Mantenemos toda la lógica del useEffect del Canvas intacta para las partículas) ...
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -116,7 +117,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[hsl(var(--hero-gradient-start))] to-[hsl(var(--hero-gradient-end))]">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[hsl(var(--hero-gradient-start))] to-[hsl(var(--hero-gradient-end))] pt-20 lg:pt-0">
       <canvas
         ref={canvasRef}
         className="absolute inset-0 opacity-30 pointer-events-none"
@@ -124,51 +125,71 @@ export const Hero = () => {
       
       <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-background/10 pointer-events-none" />
 
-      <div className="relative z-10 container mx-auto px-4 text-center animate-fade-in-up">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-scale-in">
-          <Sparkles className="w-4 h-4 text-accent" />
-          <span className="text-sm font-medium text-foreground">Luxury, Automated</span>
-        </div>
-        
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-          Automatización Premium
-          <br />
-          <span className="text-gradient-gold neon-text">para tu Negocio</span>
-        </h1>
-        
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12 font-light">
-          Flujos inteligentes, integraciones eficientes y soluciones digitales de lujo
-          <br />
-          que potencian tu empresa con IA
-        </p>
+      <div className="relative z-10 container mx-auto px-4">
+        {/* Grid Container para layout dividido */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* Columna Izquierda: Contenido de Texto */}
+          <div className="text-center lg:text-left animate-fade-in-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-scale-in justify-center lg:justify-start">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span className="text-sm font-medium text-foreground">Luxury, Automated</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+              Automatización Premium
+              <br />
+              <span className="text-gradient-gold neon-text">para tu Negocio</span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto lg:mx-0 mb-12 font-light">
+              Flujos inteligentes, integraciones eficientes y soluciones digitales de lujo
+              <br className="hidden lg:block" />
+              que potencian tu empresa con IA
+            </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-          <Button
-            size="lg"
-            className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow"
-            onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
-          >
-            Solicita tu Demo
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-primary/20 hover:bg-primary/5 hover:border-primary/40"
-            onClick={scrollToServices}
-          >
-            Descubre nuestros servicios
-          </Button>
-        </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-16">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow w-full sm:w-auto"
+                onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
+              >
+                Solicita tu Demo
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-primary/20 hover:bg-primary/5 hover:border-primary/40 w-full sm:w-auto"
+                onClick={scrollToServices}
+              >
+                Descubre nuestros servicios
+              </Button>
+            </div>
 
-        <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-          <ChevronDown className="w-4 h-4 animate-bounce" />
-          <span>Desliza para explorar</span>
+            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
+              <ChevronDown className="w-4 h-4 animate-bounce" />
+              <span>Desliza para explorar</span>
+            </div>
+          </div>
+
+          {/* Columna Derecha: Imagen SVG Anubis */}
+          <div className="relative hidden lg:flex justify-center items-center animate-fade-in delay-200">
+             {/* Fondo de brillo detrás de la imagen para resaltar */}
+            <div className="absolute inset-0 bg-accent/20 blur-[100px] rounded-full opacity-50 pointer-events-none" />
+            
+            <img 
+              src="/anubis-pantalla.svg" 
+              alt="Anubis AI Dashboard Interface" 
+              className="relative w-full max-w-[650px] h-auto drop-shadow-2xl animate-float z-10 hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+
         </div>
       </div>
 
-      {/* Decorative elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      {/* Decorative elements - Adjusted z-index to be behind content */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-float -z-10" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float -z-10" style={{ animationDelay: '2s' }} />
     </section>
   );
 };
