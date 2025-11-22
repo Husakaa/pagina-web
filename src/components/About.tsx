@@ -1,4 +1,4 @@
-import { Award, Users, TrendingUp } from 'lucide-react';
+import { Award, Users, TrendingUp, Play } from 'lucide-react';
 
 export const About = () => {
   const stats = [
@@ -14,13 +14,30 @@ export const About = () => {
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8">
             Anubis AI Agency
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed text-balance">
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed text-balance mb-12">
             Somos una agencia boutique de inteligencia artificial en la Costa del Sol.
             Combinamos expertise técnico con diseño estratégico para transformar negocios.
           </p>
+
+          {/* Founder Video Placeholder */}
+          <div className="relative aspect-video rounded-2xl overflow-hidden bg-background shadow-xl border border-border group cursor-pointer max-w-2xl mx-auto">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/10 transition-colors">
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <Play className="w-6 h-6 text-primary ml-1" fill="currentColor" />
+              </div>
+            </div>
+            <div className="absolute bottom-6 left-6 text-left">
+              <p className="text-sm font-medium text-foreground bg-white/90 px-3 py-1 rounded-lg inline-block mb-1">
+                Mensaje del Fundador
+              </p>
+              <p className="text-xs text-muted-foreground bg-white/90 px-3 py-1 rounded-lg inline-block">
+                Por qué la IA no es magia, es ingeniería.
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-20">
           {stats.map((stat, index) => {
             return (
               <div key={index} className="text-center p-8 bg-background rounded-3xl shadow-sm">

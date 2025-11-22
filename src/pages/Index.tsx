@@ -4,8 +4,10 @@ import { About } from '@/components/About';
 import { Services } from '@/components/Services';
 import { Sectors } from '@/components/Sectors';
 import { Process } from '@/components/Process';
+import { Pricing } from '@/components/Pricing';
 import { Contact } from '@/components/Contact';
 import { Footer } from '@/components/Footer';
+import { ROICalculator } from '@/components/ROICalculator';
 import { useEffect } from 'react';
 
 const Index = () => {
@@ -29,7 +31,9 @@ const Index = () => {
         <About />
         <Services />
         <Sectors />
+        <ROICalculator />
         <Process />
+        <Pricing />
         <Contact />
       </main>
       <Footer />
