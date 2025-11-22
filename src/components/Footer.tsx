@@ -5,48 +5,37 @@ export const Footer = () => {
 
   const links = {
     company: [
-      { label: 'Quiénes Somos', href: '#quienes' },
-      { label: 'Servicios', href: '#servicios' },
-      { label: 'Proceso', href: '#proceso' },
-      { label: 'Contacto', href: '#contacto' },
+      { label: 'Quiénes Somos', href: '#about' },
+      { label: 'Servicios', href: '#services' },
+      { label: 'Proceso', href: '#process' },
+      { label: 'Contacto', href: '#contact' },
     ],
     legal: [
-      { label: 'Términos y Condiciones', href: '#' },
-      { label: 'Política de Privacidad', href: '#' },
+      { label: 'Términos', href: '#' },
+      { label: 'Privacidad', href: '#' },
       { label: 'Cookies', href: '#' },
     ],
   };
 
   return (
-    <footer className="bg-secondary text-secondary-foreground">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Brand */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-accent to-accent/60 rounded-lg flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">A</span>
-              </div>
-              <span className="font-bold text-xl">Anubis AI</span>
-            </div>
-            <p className="text-secondary-foreground/70 leading-relaxed mb-4">
-              Transformamos negocios con inteligencia artificial y automatización premium.
-            </p>
-            <p className="text-sm text-secondary-foreground/50">
-              Luxury, Automated.
+    <footer className="bg-background border-t border-border">
+      <div className="container px-6 mx-auto py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+          <div className="col-span-1 md:col-span-1">
+            <span className="text-xl font-semibold tracking-tight">Anubis AI</span>
+            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+              Inteligencia Artificial,
+              <br />
+              Simplemente Funciona.
             </p>
           </div>
 
-          {/* Company Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Compañía</h3>
-            <ul className="space-y-3">
+            <h3 className="font-medium mb-4">Compañía</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               {links.company.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-secondary-foreground/70 hover:text-accent transition-colors"
-                  >
+                  <a href={link.href} className="hover:text-foreground transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -54,16 +43,12 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Legal Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Legal</h3>
-            <ul className="space-y-3">
+            <h3 className="font-medium mb-4">Legal</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
               {links.legal.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-secondary-foreground/70 hover:text-accent transition-colors"
-                  >
+                  <a href={link.href} className="hover:text-foreground transition-colors">
                     {link.label}
                   </a>
                 </li>
@@ -71,62 +56,34 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4">Contacto</h3>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 text-accent mt-0.5" />
-                <a
-                  href="mailto:contacto@anubisaiagency.com"
-                  className="text-secondary-foreground/70 hover:text-accent transition-colors"
-                >
+            <h3 className="font-medium mb-4">Contacto</h3>
+            <ul className="space-y-3 text-sm text-muted-foreground">
+              <li className="flex items-center gap-2">
+                <Mail size={16} />
+                <a href="mailto:contacto@anubisaiagency.com" className="hover:text-foreground transition-colors">
                   contacto@anubisaiagency.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 text-accent mt-0.5" />
-                <a
-                  href="tel:+34694249575"
-                  className="text-secondary-foreground/70 hover:text-accent transition-colors"
-                >
+              <li className="flex items-center gap-2">
+                <Phone size={16} />
+                <a href="tel:+34694249575" className="hover:text-foreground transition-colors">
                   +34 694 249 575
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-accent mt-0.5" />
-                <span className="text-secondary-foreground/70">
-                  Mijas Costa, Málaga
-                </span>
+              <li className="flex items-center gap-2">
+                <MapPin size={16} />
+                <span>Málaga, ES</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-secondary-foreground/10 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-secondary-foreground/50">
-              © {currentYear} Anubis AI Agency. Todos los derechos reservados.
-            </p>
-            <div className="flex items-center gap-6">
-              <a
-                href="https://www.linkedin.com/company/anubis-ai-agency"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-secondary-foreground/70 hover:text-accent transition-colors text-sm"
-              >
-                LinkedIn
-              </a>
-              <a
-                href="https://www.instagram.com/anubisaiagency"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-secondary-foreground/70 hover:text-accent transition-colors text-sm"
-              >
-                Instagram
-              </a>
-            </div>
+        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
+          <p>© {currentYear} Anubis AI Agency. Todos los derechos reservados.</p>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-foreground transition-colors">LinkedIn</a>
+            <a href="#" className="hover:text-foreground transition-colors">Instagram</a>
           </div>
         </div>
       </div>

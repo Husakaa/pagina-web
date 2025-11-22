@@ -1,195 +1,66 @@
-import { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const Hero = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  // ... (Mantenemos toda la lógica del useEffect del Canvas intacta para las partículas) ...
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d', { alpha: true });
-    if (!ctx) return;
-
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-    ctx.scale(dpr, dpr);
-
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-    }> = [];
-
-    const AREA_PER_DOT = 11000;
-    const SPEED = 0.10;
-    const LINK_DISTANCE = 120;
-    const MAX_LINKS = 2;
-
-    const count = Math.floor((w * h) / AREA_PER_DOT);
-
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * SPEED,
-        vy: (Math.random() - 0.5) * SPEED,
-        radius: 1.5,
-      });
-    }
-
-    let animationId: number;
-
-    function animate() {
-      ctx!.clearRect(0, 0, w, h);
-
-      // Update positions
-      particles.forEach(p => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0 || p.x > w) p.vx *= -1;
-        if (p.y < 0 || p.y > h) p.vy *= -1;
-      });
-
-      // Draw links
-      ctx!.strokeStyle = 'rgba(10, 14, 20, 0.18)';
-      ctx!.lineWidth = 0.5;
-      
-      particles.forEach((p1, i) => {
-        let linkCount = 0;
-        for (let j = i + 1; j < particles.length; j++) {
-          if (linkCount >= MAX_LINKS) break;
-          
-          const p2 = particles[j];
-          const dx = p2.x - p1.x;
-          const dy = p2.y - p1.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < LINK_DISTANCE) {
-            ctx!.beginPath();
-            ctx!.moveTo(p1.x, p1.y);
-            ctx!.lineTo(p2.x, p2.y);
-            ctx!.stroke();
-            linkCount++;
-          }
-        }
-      });
-
-      // Draw particles
-      ctx!.fillStyle = 'rgba(10, 14, 20, 0.75)';
-      particles.forEach(p => {
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-        ctx!.fill();
-      });
-
-      animationId = requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    const handleResize = () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const scrollToServices = () => {
-    document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[hsl(var(--hero-gradient-start))] to-[hsl(var(--hero-gradient-end))] pt-20 lg:pt-0">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 opacity-30 pointer-events-none"
-      />
-      
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-background/10 pointer-events-none" />
+    <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50 via-background to-background opacity-50" />
 
-      <div className="relative z-10 container mx-auto px-4">
-        {/* Grid Container para layout dividido */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          
-          {/* Columna Izquierda: Contenido de Texto */}
-          <div className="text-center lg:text-left animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8 animate-scale-in justify-center lg:justify-start">
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-foreground">Luxury, Automated</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              Automatización Premium
-              <br />
-              <span className="text-gradient-gold neon-text">para tu Negocio</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto lg:mx-0 mb-12 font-light">
-              Flujos inteligentes, integraciones eficientes y soluciones digitales de lujo
-              <br className="hidden lg:block" />
-              que potencian tu empresa con IA
-            </p>
+      {/* Background Logo Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-20 opacity-[0.03] pointer-events-none select-none">
+        <img src="/logo.png" alt="" className="w-[800px] h-auto" />
+      </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-16">
-              <Button
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-luxury hover:shadow-luxury-lg transition-all duration-300 hover:scale-105 neon-glow w-full sm:w-auto"
-                onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
-              >
-                Solicita tu Demo
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary/20 hover:bg-primary/5 hover:border-primary/40 w-full sm:w-auto"
-                onClick={scrollToServices}
-              >
-                Descubre nuestros servicios
-              </Button>
-            </div>
-
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-sm text-muted-foreground">
-              <ChevronDown className="w-4 h-4 animate-bounce" />
-              <span>Desliza para explorar</span>
-            </div>
+      <div className="container px-6 mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="inline-flex items-center px-3 py-1 rounded-full border border-border bg-secondary/50 backdrop-blur-sm animate-fade-in opacity-0 [animation-fill-mode:forwards]">
+            <span className="text-xs font-medium text-muted-foreground">
+              Revolucionando empresas en Málaga
+            </span>
           </div>
 
-          {/* Columna Derecha: Imagen SVG Anubis */}
-          <div className="relative hidden lg:flex justify-center items-center animate-fade-in delay-200">
-             {/* Fondo de brillo detrás de la imagen para resaltar */}
-            <div className="absolute inset-0 bg-accent/20 blur-[100px] rounded-full opacity-50 pointer-events-none" />
-            
-            <img 
-              src="/anubis-pantalla.svg" 
-              alt="Anubis AI Dashboard Interface" 
-              className="relative w-full max-w-[650px] h-auto drop-shadow-2xl animate-float z-10 hover:scale-105 transition-transform duration-700"
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-balance animate-fade-in-up opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
+            Inteligencia Artificial,
+            <br />
+            <span className="text-primary">Simplemente Funciona.</span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards]">
+            Automatizamos tus procesos de negocio con soluciones de IA elegantes y eficientes. Sin complicaciones.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards]">
+            <a
+              href="#contact"
+              className="group px-8 py-4 bg-foreground text-background rounded-full text-lg font-medium hover:bg-foreground/90 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+            >
+              Consultoría Gratuita
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="#services"
+              className="px-8 py-4 bg-secondary text-secondary-foreground rounded-full text-lg font-medium hover:bg-secondary/80 transition-all hover:scale-105 active:scale-95"
+            >
+              Ver Servicios
+            </a>
+          </div>
+        </div>
+
+        {/* Abstract Visual / Placeholder for 3D element or Image */}
+        <div className="mt-20 relative mx-auto max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl animate-fade-in-up opacity-0 [animation-delay:800ms] [animation-fill-mode:forwards] border border-border/50 bg-secondary/20 group">
+          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 bg-gradient-to-tr from-blue-50/50 to-purple-50/50 transition-transform duration-700 group-hover:scale-105">
+            {/* Central Logo in Hero Visual */}
+            <img
+              src="/logo.png"
+              alt="Anubis AI"
+              className="w-32 h-auto opacity-20 drop-shadow-xl"
             />
           </div>
 
+          {/* Overlay gradient for depth */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent pointer-events-none" />
         </div>
       </div>
-
-      {/* Decorative elements - Adjusted z-index to be behind content */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl animate-float -z-10" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-float -z-10" style={{ animationDelay: '2s' }} />
     </section>
   );
 };

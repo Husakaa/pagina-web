@@ -1,143 +1,104 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Moon, Sun } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 10);
     };
-    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    
-    if (newTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const navItems = [
-    { label: 'Quiénes Somos', href: '#quienes' },
-    { label: 'Servicios', href: '#servicios' },
-    { label: 'Sectores', href: '#sectores' },
-    { label: 'Proceso', href: '#proceso' },
-    { label: 'Contacto', href: '#contacto' },
+  const navLinks = [
+    { name: 'Servicios', href: '#services' },
+    { name: 'Sectores', href: '#sectors' },
+    { name: 'Proceso', href: '#process' },
+    { name: 'Contacto', href: '#contact' },
   ];
-
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
-  };
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-background/95 backdrop-blur-md shadow-sm border-b border-border'
-          : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'glass py-3 shadow-sm' : 'bg-transparent py-6'
+        }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2 font-bold text-xl">
-            <div className="w-8 h-8 bg-gradient-to-br from-accent to-accent/60 rounded-lg flex items-center justify-center">
-              <span className="text-primary font-bold">A</span>
-            </div>
-            <span className="hidden sm:inline">Anubis AI</span>
+      <div className="container mx-auto px-6 flex items-center justify-between">
+        <a
+          href="/"
+          onClick={scrollToTop}
+          className="flex items-center gap-2 group"
+        >
+          <img
+            src="/logo.png"
+            alt="Anubis AI Logo"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+          />
+          <span className="text-xl font-semibold tracking-tight hidden sm:block">
+            Anubis<span className="text-primary">AI</span>
+          </span>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors relative after:content-[''] after:absolute after:left-0 after:bottom-[-4px] after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+            >
+              {link.name}
+            </a>
+          ))}
+          <a
+            href="#contact"
+            className="px-5 py-2.5 bg-foreground text-background rounded-full text-sm font-medium hover:bg-foreground/90 transition-all hover:scale-105 active:scale-95"
+          >
+            Empezar ahora
           </a>
+        </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollToSection(item.href)}
-                className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="rounded-full"
-            >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-            </Button>
-
-            <Button
-              className="hidden sm:inline-flex bg-accent hover:bg-accent/90 text-accent-foreground neon-glow hover:scale-105 transition-all duration-300"
-              onClick={() => (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' })}
-            >
-              Agendar Llamada
-            </Button>
-
-            {/* Mobile menu button */}
-            <Button
-              variant="ghost"
-              size="icon"
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </Button>
-          </div>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="md:hidden border-t border-border py-4 animate-fade-in">
-            <nav className="flex flex-col gap-4">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollToSection(item.href)}
-                  className="text-left text-sm font-medium text-foreground/80 hover:text-foreground transition-colors py-2"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <Button
-                className="w-full bg-accent hover:bg-accent/90 text-accent-foreground mt-2 neon-glow"
-                onClick={() => {
-                  (window as any).Calendly?.initPopupWidget({ url: 'https://calendly.com/anubisaiagency/30min' });
-                  setIsMenuOpen(false);
-                }}
-              >
-                Agendar Llamada
-              </Button>
-            </nav>
-          </div>
-        )}
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden p-2 text-foreground"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
+
+      {/* Mobile Nav */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 glass border-t border-border p-6 md:hidden animate-fade-in-up origin-top">
+          <nav className="flex flex-col space-y-6">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="px-4 py-3 bg-foreground text-background rounded-xl text-center font-medium hover:bg-foreground/90 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Empezar ahora
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

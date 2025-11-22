@@ -2,99 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Luxury premium palette */
-    --background: 0 0% 100%;
-    --foreground: 220 20% 8%;
-    
+    /* Apple-style minimalist palette */
+    --background: 0 0% 100%; /* White */
+    --foreground: 0 0% 0%; /* Black */
+
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 8%;
-    
+    --card-foreground: 0 0% 0%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 8%;
-    
-    /* Primary: Deep luxury black */
-    --primary: 220 20% 8%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 211 100% 50%; /* System Blue */
     --primary-foreground: 0 0% 100%;
-    
-    /* Secondary: Elegant charcoal */
-    --secondary: 220 15% 20%;
-    --secondary-foreground: 0 0% 98%;
-    
-    /* Accent: Bright neon blue */
-    --accent: 195 100% 70%;
-    --accent-foreground: 220 20% 8%;
-    
-    /* Muted: Soft neutral */
-    --muted: 220 10% 96%;
-    --muted-foreground: 220 10% 45%;
-    
+
+    --secondary: 0 0% 96%; /* Light Gray */
+    --secondary-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 195 100% 70%;
-    
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 211 100% 50%;
+
     --radius: 0.75rem;
-    
-    /* Custom luxury tokens */
-    --luxury-neon: 195 100% 70%;
-    --luxury-neon-light: 195 100% 80%;
-    --luxury-neon-dark: 195 100% 60%;
-    --neon-glow: 195 100% 70%;
-    --neon-shadow: 0 0 20px hsl(195 100% 70% / 0.5), 0 0 40px hsl(195 100% 70% / 0.3), 0 0 60px hsl(195 100% 70% / 0.2);
-    
-    --hero-gradient-start: 220 15% 98%;
-    --hero-gradient-end: 220 15% 94%;
-    
-    --card-elevated: 0 0% 100%;
-    --shadow-luxury: 220 20% 8%;
   }
 
   .dark {
-    /* Dark theme: Luxury night mode */
-    --background: 220 20% 8%;
-    --foreground: 0 0% 98%;
-    
-    --card: 220 18% 12%;
-    --card-foreground: 0 0% 98%;
-    
-    --popover: 220 18% 12%;
-    --popover-foreground: 0 0% 98%;
-    
-    --primary: 0 0% 98%;
-    --primary-foreground: 220 20% 8%;
-    
-    --secondary: 220 15% 16%;
-    --secondary-foreground: 0 0% 98%;
-    
-    --accent: 195 100% 70%;
-    --accent-foreground: 220 20% 8%;
-    
-    --muted: 220 15% 16%;
-    --muted-foreground: 220 10% 60%;
-    
-    --destructive: 0 62.8% 50%;
+    /* Apple-style dark mode */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 11%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 11%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 0 0% 11%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 220 15% 20%;
-    --input: 220 15% 20%;
-    --ring: 195 100% 70%;
-    
-    --neon-glow: 195 100% 70%;
-    --neon-shadow: 0 0 20px hsl(195 100% 70% / 0.6), 0 0 40px hsl(195 100% 70% / 0.4), 0 0 60px hsl(195 100% 70% / 0.2);
-    
-    --hero-gradient-start: 220 20% 10%;
-    --hero-gradient-end: 220 20% 8%;
-    
-    --card-elevated: 220 18% 14%;
-    --shadow-luxury: 0 0% 0%;
+
+    --border: 0 0% 11%;
+    --input: 0 0% 11%;
+    --ring: 211 100% 50%;
   }
 }
 
@@ -102,65 +72,22 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-  
-  html {
-    scroll-behavior: smooth;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
 @layer utilities {
-  .text-gradient-gold {
-    @apply bg-gradient-to-r from-[hsl(var(--luxury-neon-light))] via-[hsl(var(--luxury-neon))] to-[hsl(var(--luxury-neon-dark))] bg-clip-text text-transparent;
+  .glass {
+    @apply bg-white/70 backdrop-blur-lg border border-white/20;
   }
   
-  .shadow-luxury {
-    box-shadow: 0 20px 60px -15px hsl(var(--shadow-luxury) / 0.15), var(--neon-shadow);
+  .glass-dark {
+    @apply bg-black/70 backdrop-blur-lg border border-white/10;
   }
   
-  .shadow-luxury-lg {
-    box-shadow: 0 30px 80px -20px hsl(var(--shadow-luxury) / 0.25), var(--neon-shadow);
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-glow {
-    animation: glow 3s ease-in-out infinite;
-  }
-  
-  .neon-glow {
-    box-shadow: var(--neon-shadow);
-  }
-  
-  .neon-text {
-    text-shadow: 0 0 10px hsl(var(--neon-glow) / 0.8),
-                 0 0 20px hsl(var(--neon-glow) / 0.6),
-                 0 0 30px hsl(var(--neon-glow) / 0.4);
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
-  
-  @keyframes glow {
-    0%, 100% {
-      opacity: 0.5;
-      filter: drop-shadow(0 0 5px hsl(var(--neon-glow)));
-    }
-    50% {
-      opacity: 1;
-      filter: drop-shadow(0 0 20px hsl(var(--neon-glow)));
-    }
+  .text-balance {
+    text-wrap: balance;
   }
 }
