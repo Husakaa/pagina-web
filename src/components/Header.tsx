@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import { ModeToggle } from './mode-toggle';
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -39,7 +40,12 @@ export const Header = () => {
           <img
             src="/logo.png"
             alt="Anubis AI Logo"
-            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105 dark:hidden"
+          />
+          <img
+            src="/logo_negativo.png"
+            alt="Anubis AI Logo"
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-105 hidden dark:block"
           />
           <span className="text-xl font-semibold tracking-tight hidden sm:block">
             Anubis<span className="text-primary">AI</span>
@@ -63,6 +69,7 @@ export const Header = () => {
           >
             Empezar ahora
           </a>
+          <ModeToggle />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -73,6 +80,9 @@ export const Header = () => {
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+        <div className="md:hidden ml-4">
+          <ModeToggle />
+        </div>
       </div>
 
       {/* Mobile Nav */}

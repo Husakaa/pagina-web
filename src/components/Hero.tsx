@@ -61,7 +61,7 @@ export const Hero = () => {
             {/* Social Proof Strip */}
             <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
               {/* Placeholders for client logos */}
-              {['TechCorp', 'InmoSur', 'ClínicaVital', 'ShopifyStore', 'LegalFirm'].map((client) => (
+              {['MijasPan', 'Oasis Café', 'ShopifyStore', 'VTC Fuengirola', 'ModasSur'].map((client) => (
                 <span key={client} className="text-lg font-bold text-muted-foreground">{client}</span>
               ))}
             </div>
