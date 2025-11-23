@@ -12,6 +12,7 @@ export const ROICalculator = () => {
     const [result, setResult] = useState<number | null>(null);
     const [email, setEmail] = useState('');
     const [showResult, setShowResult] = useState(false);
+    const [isCalculated, setIsCalculated] = useState(false);
 
     const calculateROI = (e: React.FormEvent) => {
         e.preventDefault();
@@ -23,7 +24,12 @@ export const ROICalculator = () => {
             // Annual savings = Employees * Hours/Week * 52 weeks * Hourly Rate
             const annualSavings = emp * hrs * 52 * rate;
             setResult(annualSavings);
-            setShowResult(true);
+            // Trigger email gate by setting a flag or just using the email state logic in render
+            // In my render logic: !showResult && !email -> Input Form
+            // !showResult && email -> Email Gate (Wait, my render logic uses 'email' state presence to show gate?)
+            // Actually, I need a state to say "Calculation Done, Waiting for Email".
+            // Let's use a new state 'isCalculated'.
+            setIsCalculated(true);
         }
     };
 
@@ -59,8 +65,8 @@ export const ROICalculator = () => {
                     </div>
 
                     <div className="bg-background p-8 rounded-3xl shadow-lg border border-border">
-                        {!showResult ? (
-                            <form onSubmit={calculateROI} className="space-y-6">
+                        {!isCalculated ? (
+                            <form onSubmit={(e) => { e.preventDefault(); calculateROI(e); }} className="space-y-6">
                                 <div className="space-y-2">
                                     <Label htmlFor="employees">Número de empleados administrativos</Label>
                                     <Input
@@ -98,6 +104,33 @@ export const ROICalculator = () => {
                                     Calcular mi Ahorro
                                 </Button>
                             </form>
+                        ) : isCalculated && !showResult ? (
+                            <div className="text-center space-y-6 animate-fade-in py-8">
+                                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary mb-4">
+                                    <Calculator size={32} />
+                                </div>
+                                <h3 className="text-2xl font-bold">¡Cálculo Completado!</h3>
+                                <p className="text-muted-foreground max-w-xs mx-auto">
+                                    Hemos analizado tus datos. Introduce tu email para desbloquear tu informe de ahorro personalizado.
+                                </p>
+                                <div className="space-y-4 max-w-sm mx-auto">
+                                    <Input
+                                        type="email"
+                                        placeholder="tu@email.com"
+                                        required
+                                        className="text-center"
+                                        onChange={(e) => {
+                                            // Just a dummy validation for now
+                                            if (e.target.value.includes('@')) {
+                                                setShowResult(true);
+                                            }
+                                        }}
+                                    />
+                                    <p className="text-xs text-muted-foreground">
+                                        Te enviaremos también una guía de implementación.
+                                    </p>
+                                </div>
+                            </div>
                         ) : (
                             <div className="text-center space-y-6 animate-fade-in">
                                 <h3 className="text-2xl font-semibold">Tu Potencial de Ahorro Anual</h3>
@@ -109,21 +142,13 @@ export const ROICalculator = () => {
                                 </p>
 
                                 <div className="pt-6 border-t border-border">
-                                    <p className="text-sm font-medium mb-4">¿Quieres saber cómo recuperar este dinero?</p>
-                                    <div className="flex gap-2">
-                                        <Input
-                                            placeholder="Tu mejor email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                        />
-                                        <Button onClick={() => alert('¡Gracias! Te enviaremos el informe detallado.')}>
-                                            Enviar Informe
-                                        </Button>
-                                    </div>
+                                    <Button className="w-full rounded-full" size="lg" onClick={() => window.location.href = '#contact'}>
+                                        Quiero empezar a ahorrar
+                                    </Button>
                                 </div>
 
                                 <button
-                                    onClick={() => setShowResult(false)}
+                                    onClick={() => { setShowResult(false); setIsCalculated(false); setEmail(''); }}
                                     className="text-sm text-muted-foreground hover:text-foreground underline"
                                 >
                                     Recalcular

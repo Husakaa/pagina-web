@@ -5,15 +5,15 @@ export const Footer = () => {
 
   const links = {
     company: [
-      { label: 'Quiénes Somos', href: '#about' },
-      { label: 'Servicios', href: '#services' },
-      { label: 'Proceso', href: '#process' },
-      { label: 'Contacto', href: '#contact' },
+      { label: 'Quiénes Somos', href: '/#about' },
+      { label: 'Servicios', href: '/#services' },
+      { label: 'Proceso', href: '/#process' },
+      { label: 'Contacto', href: '/#contact' },
     ],
     legal: [
-      { label: 'Términos', href: '#' },
-      { label: 'Privacidad', href: '#' },
-      { label: 'Cookies', href: '#' },
+      { label: 'Términos', href: '/terminos' },
+      { label: 'Privacidad', href: '/privacidad' },
+      { label: 'Cookies', href: '/cookies' },
     ],
   };
 

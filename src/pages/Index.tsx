@@ -28,10 +28,10 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
+        <ROICalculator />
         <About />
         <Services />
         <Sectors />
-        <ROICalculator />
         <Process />
         <Pricing />
         <Contact />

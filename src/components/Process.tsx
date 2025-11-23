@@ -5,26 +5,26 @@ export const Process = () => {
     {
       icon: Search,
       number: '01',
-      title: 'Diagnóstico Profundo',
-      description: 'Auditoría exhaustiva para identificar cuellos de botella reales.',
+      title: 'Auditoría de Fugas de Dinero',
+      description: 'Encontramos dónde estás perdiendo tiempo y dinero hoy mismo. Sin tecnicismos.',
     },
     {
       icon: Target,
       number: '02',
-      title: 'Arquitectura de Flujos',
-      description: 'Diseño de la infraestructura lógica que sostendrá tu automatización.',
+      title: 'Diseño de la Solución',
+      description: 'Creamos el mapa exacto para automatizar tus procesos sin romper nada de lo que ya funciona.',
     },
     {
       icon: Rocket,
       number: '03',
-      title: 'Despliegue de Agentes',
-      description: 'Implementación de IAs entrenadas específicamente para tu negocio.',
+      title: 'Despliegue sin Interrupciones',
+      description: 'Tus nuevos empleados digitales empiezan a trabajar mientras tú sigues operando con normalidad.',
     },
     {
       icon: TrendingUp,
       number: '04',
-      title: 'Escalado Autónomo',
-      description: 'Optimización continua para que el sistema crezca sin tu intervención.',
+      title: 'Crecimiento Automático',
+      description: 'Tu sistema aprende y mejora solo, permitiéndote escalar sin contratar más personal.',
     },
   ];
 

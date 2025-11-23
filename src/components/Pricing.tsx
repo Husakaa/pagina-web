@@ -1,28 +1,34 @@
-import { Database, GitBranch, TrendingUp, ArrowRight, Scissors } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Zap, Rocket, Building2 } from 'lucide-react';
 
 export const Pricing = () => {
-    const factors = [
+    const plans = [
         {
-            icon: Database,
-            title: 'Volumen de Datos',
-            question: '¿Cuántos pedidos o interacciones maneja al mes?',
-            description: 'No es lo mismo procesar 100 pedidos que 10.000. La infraestructura escala según tu carga de trabajo.',
-            examples: ['100 vs 10,000 interacciones', 'Almacenamiento histórico', 'Frecuencia de sincronización'],
+            name: 'Starter',
+            price: 'Desde 500€',
+            period: '/mes',
+            description: 'Automatización esencial para pequeñas empresas.',
+            icon: Zap,
+            features: ['Chatbot de Atención al Cliente', 'Respuestas Automáticas 24/7', 'Integración con WhatsApp', 'Reporte Mensual Básico'],
+            highlight: false
         },
         {
-            icon: GitBranch,
-            title: 'Complejidad del Flujo',
-            question: '¿Necesita lógica avanzada o simple transferencia?',
-            description: 'Desde automatizaciones lineales hasta agentes autónomos con toma de decisiones compleja y validaciones.',
-            examples: ['Validaciones condicionales', 'Integración de múltiples APIs', 'Lógica de negocio personalizada'],
+            name: 'Growth',
+            price: 'Desde 1.200€',
+            period: '/mes',
+            description: 'Automatización operativa para empresas en crecimiento.',
+            icon: Rocket,
+            features: ['Todo lo de Starter', 'Automatización de Procesos (Facturas, Citas)', 'CRM Integrado', 'Dashboard de Analytics Avanzado', 'Soporte Prioritario'],
+            highlight: true
         },
         {
-            icon: TrendingUp,
-            title: 'Retorno de Inversión (ROI)',
-            question: '¿Qué beneficio genera la solución?',
-            description: 'Diseñamos soluciones que se pagan solas. El coste es una fracción del valor que generamos para tu negocio.',
-            examples: ['Ahorro de horas/hombre', 'Incremento de ventas', 'Reducción de errores'],
-        },
+            name: 'Enterprise',
+            price: 'A Medida',
+            period: '',
+            description: 'Soluciones complejas para grandes volúmenes.',
+            icon: Building2,
+            features: ['Agentes Autónomos Multi-rol', 'Integraciones API Personalizadas', 'Despliegue en Servidores Propios', 'SLA Garantizado', 'Consultoría Estratégica Continua'],
+            highlight: false
+        }
     ];
 
     return (
@@ -32,56 +38,71 @@ export const Pricing = () => {
 
             <div className="container px-6 mx-auto">
                 <div className="max-w-4xl mx-auto text-center mb-20">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-secondary-foreground text-sm font-medium mb-6">
-                        <Scissors size={16} />
-                        <span>Trajes a Medida</span>
-                    </div>
                     <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
-                        Inversión adaptada a tu realidad.
+                        Inversión clara, retorno medible.
                     </h2>
                     <p className="text-xl text-muted-foreground text-balance">
-                        Nuestras soluciones son como un traje de sastrería: el precio exacto depende de la complejidad de la confección y la calidad de los materiales.
+                        Elige el nivel de automatización que tu negocio necesita hoy. Escala mañana.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    {factors.map((factor, index) => {
-                        const Icon = factor.icon;
+                    {plans.map((plan, index) => {
+                        const Icon = plan.icon;
                         return (
-                            <div key={index} className="bg-secondary/20 rounded-3xl p-8 border border-border/50 hover:border-primary/20 transition-colors">
-                                <div className="w-12 h-12 rounded-2xl bg-background flex items-center justify-center text-primary mb-6 shadow-sm">
-                                    <Icon size={24} />
+                            <div
+                                key={index}
+                                className={`relative rounded-[2rem] p-8 border flex flex-col h-full transition-all duration-300 hover:-translate-y-2 ${plan.highlight
+                                        ? 'bg-secondary/30 border-primary/20 shadow-xl shadow-primary/5'
+                                        : 'bg-background border-border hover:border-primary/10 hover:shadow-lg'
+                                    }`}
+                            >
+                                {plan.highlight && (
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider rounded-full">
+                                        Más Popular
+                                    </div>
+                                )}
+
+                                <div className="mb-6 p-3 bg-secondary/50 rounded-2xl w-fit">
+                                    <Icon className="w-6 h-6 text-primary" />
                                 </div>
-                                <h3 className="text-xl font-bold mb-2">{factor.title}</h3>
-                                <p className="text-sm font-medium text-foreground mb-4">{factor.question}</p>
-                                <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-                                    {factor.description}
+
+                                <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+                                <div className="flex items-baseline gap-1 mb-4">
+                                    <span className="text-3xl font-bold">{plan.price}</span>
+                                    <span className="text-muted-foreground">{plan.period}</span>
+                                </div>
+                                <p className="text-muted-foreground text-sm mb-8 leading-relaxed">
+                                    {plan.description}
                                 </p>
-                                <ul className="space-y-2">
-                                    {factor.examples.map((example, i) => (
-                                        <li key={i} className="flex items-center gap-2 text-xs text-muted-foreground">
-                                            <div className="w-1 h-1 rounded-full bg-primary" />
-                                            {example}
+
+                                <ul className="space-y-4 mb-8 flex-grow">
+                                    {plan.features.map((feature, i) => (
+                                        <li key={i} className="flex items-start gap-3 text-sm">
+                                            <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
+                                            <span>{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
+
+                                <a
+                                    href="#contact"
+                                    className={`w-full py-4 rounded-xl font-medium text-center transition-all ${plan.highlight
+                                            ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20'
+                                            : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                                        }`}
+                                >
+                                    Empezar ahora
+                                </a>
                             </div>
                         );
                     })}
                 </div>
 
-                <div className="bg-primary/5 rounded-[2.5rem] p-8 md:p-12 text-center border border-primary/10 max-w-3xl mx-auto">
-                    <h3 className="text-2xl font-bold mb-4">¿Quieres un presupuesto exacto?</h3>
-                    <p className="text-muted-foreground mb-8 max-w-lg mx-auto">
-                        Analicemos tu caso en una sesión de consultoría gratuita. Te daremos una hoja de ruta y un presupuesto cerrado sin compromiso.
+                <div className="text-center">
+                    <p className="text-muted-foreground text-sm">
+                        ¿Tienes dudas sobre qué plan elegir? <a href="#contact" className="text-primary hover:underline font-medium">Agenda una consultoría gratuita</a> y te asesoramos.
                     </p>
-                    <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full text-lg font-medium hover:bg-primary/90 transition-all hover:scale-105 shadow-lg shadow-primary/20"
-                    >
-                        Solicitar Presupuesto Personalizado
-                        <ArrowRight size={20} />
-                    </a>
                 </div>
             </div>
         </section>

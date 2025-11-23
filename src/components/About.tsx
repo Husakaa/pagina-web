@@ -21,18 +21,26 @@ export const About = () => {
 
           {/* Founder Video Placeholder */}
           <div className="relative aspect-video rounded-2xl overflow-hidden bg-background shadow-xl border border-border group cursor-pointer max-w-2xl mx-auto">
-            <div className="absolute inset-0 flex items-center justify-center bg-black/5 group-hover:bg-black/10 transition-colors">
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                <Play className="w-6 h-6 text-primary ml-1" fill="currentColor" />
+            {/* Placeholder for Founder Image */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
+              <Users className="w-32 h-32 text-white/10" />
+            </div>
+
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+              <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 shadow-2xl group-hover:scale-110 transition-transform">
+                <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
               </div>
             </div>
+
             <div className="absolute bottom-6 left-6 text-left">
-              <p className="text-sm font-medium text-foreground bg-white/90 px-3 py-1 rounded-lg inline-block mb-1">
-                Mensaje del Fundador
-              </p>
-              <p className="text-xs text-muted-foreground bg-white/90 px-3 py-1 rounded-lg inline-block">
-                Por qué la IA no es magia, es ingeniería.
-              </p>
+              <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
+                <p className="text-sm font-semibold text-white mb-0.5">
+                  Mensaje de Husaka
+                </p>
+                <p className="text-xs text-gray-300">
+                  Fundador de Anubis AI
+                </p>
+              </div>
             </div>
           </div>
         </div>

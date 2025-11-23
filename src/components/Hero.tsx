@@ -1,40 +1,21 @@
 import { ArrowRight, Play } from 'lucide-react';
-import { useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { LeadForm } from './LeadForm';
 
 export const Hero = () => {
-  const [searchParams] = useSearchParams();
-  const sector = searchParams.get('sector');
-
-  const getHeadline = () => {
-    if (sector === 'inmobiliaria') return 'IA para Inmobiliarias: Vende casas mientras duermes.';
-    if (sector === 'medico') return 'IA para Clínicas: Cero ausencias, más pacientes.';
-    if (sector === 'ecommerce') return 'IA para E-commerce: Tu tienda vendiendo 24/7.';
-    return (
-      <>
-        Inteligencia Artificial,
-        <br />
-        <span className="text-primary">Simplemente Funciona.</span>
-      </>
-    );
-  };
+  const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
       {/* Background Gradient */}
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50 via-background to-background opacity-50" />
 
-
-
       <div className="container px-6 mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto space-y-8">
-          <div className="inline-flex items-center px-3 py-1 rounded-full border border-border bg-secondary/50 backdrop-blur-sm animate-fade-in opacity-0 [animation-fill-mode:forwards]">
-            <span className="text-xs font-medium text-muted-foreground">
-              Revolucionando empresas en Málaga
-            </span>
-          </div>
-
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-balance animate-fade-in-up opacity-0 [animation-delay:200ms] [animation-fill-mode:forwards]">
-            {getHeadline()}
+            Automatiza lo Aburrido.
+            <br />
+            <span className="text-primary">Escala lo Importante.</span>
           </h1>
 
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in-up opacity-0 [animation-delay:400ms] [animation-fill-mode:forwards]">
@@ -42,14 +23,13 @@ export const Hero = () => {
           </p>
 
           <div className="flex flex-col items-center gap-8 animate-fade-in-up opacity-0 [animation-delay:600ms] [animation-fill-mode:forwards]">
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#contact"
-                className="group px-8 py-4 bg-foreground text-background rounded-full text-lg font-medium hover:bg-foreground/90 transition-all flex items-center gap-2 hover:scale-105 active:scale-95"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in [animation-delay:400ms]">
+              <button
+                onClick={() => setIsLeadFormOpen(true)}
+                className="w-full sm:w-auto px-8 py-4 bg-primary text-primary-foreground rounded-full font-medium text-lg hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-primary/25"
               >
-                Consultoría Gratuita
-                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-              </a>
+                Solicitar Auditoría
+              </button>
               <a
                 href="#services"
                 className="px-8 py-4 bg-secondary text-secondary-foreground rounded-full text-lg font-medium hover:bg-secondary/80 transition-all hover:scale-105 active:scale-95"
@@ -75,6 +55,7 @@ export const Hero = () => {
           </div>
         </div>
       </div>
+      <LeadForm isOpen={isLeadFormOpen} onClose={() => setIsLeadFormOpen(false)} source="Hero" />
     </section>
   );
 };

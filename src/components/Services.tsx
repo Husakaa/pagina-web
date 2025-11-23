@@ -1,4 +1,4 @@
-import { Bot, Workflow, TrendingUp, MessageSquare, Calendar, BarChart3 } from 'lucide-react';
+import { Bot, BrainCircuit, BarChart3, Rocket, Workflow, Users } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 export const Services = () => {
@@ -30,33 +30,33 @@ export const Services = () => {
   const services = [
     {
       icon: Bot,
-      title: 'Agentes de IA',
-      description: 'Asistentes virtuales 24/7 que gestionan consultas, reservas y ventas automáticamente.',
+      title: 'Ahorra 20h/semana Automatizando',
+      description: 'Eliminamos las tareas repetitivas de tu negocio. Desde facturación hasta gestión de leads, deja que la IA se encargue del trabajo sucio.',
     },
     {
-      icon: Workflow,
-      title: 'Automatización',
-      description: 'Conectamos tus herramientas para crear workflows inteligentes que eliminan tareas repetitivas.',
-    },
-    {
-      icon: TrendingUp,
-      title: 'Marketing IA',
-      description: 'Campañas personalizadas impulsadas por machine learning que maximizan tu ROI.',
-    },
-    {
-      icon: MessageSquare,
-      title: 'Chatbots',
-      description: 'Conversaciones naturales que convierten visitantes en clientes en tu web y redes.',
-    },
-    {
-      icon: Calendar,
-      title: 'Gestión de Citas',
-      description: 'Sistema de reservas automatizado que reduce no-shows y optimiza tu calendario.',
+      icon: BrainCircuit,
+      title: 'Vende y Atiende 24/7',
+      description: 'Asistentes virtuales que no duermen. Atiende a tus clientes, resuelve dudas y cierra ventas a cualquier hora del día.',
     },
     {
       icon: BarChart3,
-      title: 'Analytics',
-      description: 'Insights accionables basados en IA para decisiones estratégicas informadas.',
+      title: 'Predice Tendencias y Ventas',
+      description: 'Convierte tus datos en decisiones rentables. Anticipa la demanda y optimiza tu stock con modelos predictivos.',
+    },
+    {
+      icon: Rocket,
+      title: 'Implementación Sin Riesgos',
+      description: 'Te acompañamos en cada paso. Estrategia, desarrollo e integración personalizada para asegurar el retorno de inversión.',
+    },
+    {
+      icon: Workflow,
+      title: 'Auditoría de Procesos',
+      description: 'Analizamos tu flujo de trabajo actual para detectar cuellos de botella y oportunidades de automatización inmediata.',
+    },
+    {
+      icon: Users,
+      title: 'Formación Corporativa',
+      description: 'Capacitamos a tu equipo para que domine las nuevas herramientas de IA y maximice su productividad diaria.',
     },
   ];
 
