@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { ModeToggle } from './mode-toggle';
 import { LeadForm } from './LeadForm';
 
 export const Header = () => {
@@ -108,7 +107,6 @@ export const Header = () => {
           >
             Auditoría Gratuita
           </button>
-          <ModeToggle />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -123,12 +121,12 @@ export const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-background border-b border-border p-4 flex flex-col space-y-4 animate-fade-in z-40">
+        <div className="md:hidden absolute top-full left-0 w-full bg-background/95 backdrop-blur-md border-b border-border p-6 flex flex-col space-y-6 animate-fade-in z-40 shadow-xl">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-foreground/80 hover:text-primary font-medium transition-colors"
+              className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors py-2 border-b border-border/50 last:border-0"
               onClick={(e) => handleNavClick(e, link.href)}
             >
               {link.name}
@@ -139,13 +137,10 @@ export const Header = () => {
               setIsLeadFormOpen(true);
               setIsMobileMenuOpen(false);
             }}
-            className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity w-full"
+            className="bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-opacity w-full text-lg shadow-lg shadow-primary/20"
           >
             Auditoría Gratuita
           </button>
-          <div className="pt-2">
-            <ModeToggle />
-          </div>
         </div>
       )}
 

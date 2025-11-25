@@ -4,8 +4,8 @@ export const Pricing = () => {
     const plans = [
         {
             name: 'Starter',
-            price: 'Desde 500€',
-            period: '/mes',
+            price: 'Desde 399€',
+            period: '',
             description: 'Automatización esencial para pequeñas empresas.',
             icon: Zap,
             features: ['Chatbot de Atención al Cliente', 'Respuestas Automáticas 24/7', 'Integración con WhatsApp', 'Reporte Mensual Básico'],
@@ -13,8 +13,8 @@ export const Pricing = () => {
         },
         {
             name: 'Growth',
-            price: 'Desde 1.200€',
-            period: '/mes',
+            price: 'Desde 1099€',
+            period: '',
             description: 'Automatización operativa para empresas en crecimiento.',
             icon: Rocket,
             features: ['Todo lo de Starter', 'Automatización de Procesos (Facturas, Citas)', 'CRM Integrado', 'Dashboard de Analytics Avanzado', 'Soporte Prioritario'],
@@ -32,7 +32,7 @@ export const Pricing = () => {
     ];
 
     return (
-        <section id="pricing" className="py-32 bg-background relative overflow-hidden">
+        <section id="pricing" className="py-16 md:py-32 bg-background relative overflow-hidden">
             {/* Background decoration */}
             <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
 
@@ -53,8 +53,8 @@ export const Pricing = () => {
                             <div
                                 key={index}
                                 className={`relative rounded-[2rem] p-8 border flex flex-col h-full transition-all duration-300 hover:-translate-y-2 ${plan.highlight
-                                        ? 'bg-secondary/30 border-primary/20 shadow-xl shadow-primary/5'
-                                        : 'bg-background border-border hover:border-primary/10 hover:shadow-lg'
+                                    ? 'bg-secondary/30 border-primary/20 shadow-xl shadow-primary/5'
+                                    : 'bg-background border-border hover:border-primary/10 hover:shadow-lg'
                                     }`}
                             >
                                 {plan.highlight && (
@@ -88,8 +88,8 @@ export const Pricing = () => {
                                 <a
                                     href="#contact"
                                     className={`w-full py-4 rounded-xl font-medium text-center transition-all ${plan.highlight
-                                            ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20'
-                                            : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                                        ? 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20'
+                                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
                                         }`}
                                 >
                                     Empezar ahora

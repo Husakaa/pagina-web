@@ -29,7 +29,7 @@ export const Sectors = () => {
     },
     {
       icon: Utensils,
-      client: 'Restaurante El Patio',
+      client: 'Restaurante Oasis Café',
       sector: 'Restauración',
       result: 'Reservas automáticas 100%',
       description: 'Sistema de voz IA que atiende llamadas y gestiona reservas en el libro digital sin intervención humana.',
@@ -73,7 +73,7 @@ export const Sectors = () => {
     },
     {
       icon: Stethoscope,
-      client: 'Clínica Dental Pro',
+      client: 'Clínica Dental Mijas',
       sector: 'Salud',
       result: 'Ahorro de 20h/semana',
       description: 'Triaje automático de pacientes y gestión de agenda médica integrada.',

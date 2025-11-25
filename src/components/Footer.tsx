@@ -19,8 +19,8 @@ export const Footer = () => {
 
   return (
     <footer className="bg-background border-t border-border">
-      <div className="container px-6 mx-auto py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+      <div className="container px-6 mx-auto py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-12 mb-8 md:mb-12">
           <div className="col-span-1 md:col-span-1">
             <span className="text-xl font-semibold tracking-tight">Anubis AI</span>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed">

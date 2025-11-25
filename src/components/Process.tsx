@@ -29,7 +29,7 @@ export const Process = () => {
   ];
 
   return (
-    <section id="process" className="py-32 bg-background overflow-hidden relative">
+    <section id="process" className="py-16 md:py-32 bg-background overflow-hidden relative">
       <div className="container px-6 mx-auto relative z-10">
         <div className="mb-24 text-center">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
@@ -42,7 +42,7 @@ export const Process = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Column: Mascot & Orbiting Symbols */}
-          <div className="relative h-[500px] flex items-center justify-center">
+          <div className="relative h-[300px] md:h-[500px] flex items-center justify-center hidden md:flex">
             {/* Central Mascot */}
             <div className="relative z-20 w-64 h-64 md:w-80 md:h-80 animate-float">
               <img
@@ -85,7 +85,7 @@ export const Process = () => {
 
             {steps.map((step, index) => {
               return (
-                <div key={index} className="relative pl-20 group">
+                <div key={index} className="relative pl-4 md:pl-20 group">
                   {/* Connector Node */}
                   <div className="absolute left-[27px] top-1 w-4 h-4 rounded-full bg-background border-2 border-primary z-10 group-hover:scale-125 group-hover:bg-primary transition-all duration-300 hidden md:block shadow-[0_0_10px_rgba(59,130,246,0.5)]" />
 

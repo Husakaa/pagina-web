@@ -61,7 +61,7 @@ export const Services = () => {
   ];
 
   return (
-    <section id="services" ref={sectionRef} className="py-32 bg-background">
+    <section id="services" ref={sectionRef} className="py-16 md:py-32 bg-background">
       <div className="container px-6 mx-auto">
         <div className="mb-20 max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-6">
@@ -79,7 +79,7 @@ export const Services = () => {
             return (
               <div
                 key={index}
-                className={`group p-6 rounded-2xl border border-transparent hover:border-primary/10 hover:bg-secondary/20 hover:-translate-y-2 hover:shadow-lg transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                className={`group p-5 md:p-6 rounded-2xl border border-transparent hover:border-primary/10 hover:bg-secondary/20 hover:-translate-y-2 hover:shadow-lg transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
               >
                 <div className="mb-6 inline-flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-sm">

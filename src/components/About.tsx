@@ -2,9 +2,9 @@ import { Award, Users, TrendingUp, Play } from 'lucide-react';
 
 export const About = () => {
   const stats = [
-    { icon: Award, value: '100+', label: 'Proyectos' },
-    { icon: Users, value: '50+', label: 'Clientes' },
-    { icon: TrendingUp, value: '40%', label: 'Crecimiento' },
+    { icon: Award, value: '20+', label: 'Proyectos' },
+    { icon: Users, value: '10+', label: 'Clientes' },
+    { icon: TrendingUp, value: '+40%', label: 'Crecimiento' },
   ];
 
   return (
@@ -35,10 +35,7 @@ export const About = () => {
             <div className="absolute bottom-6 left-6 text-left">
               <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
                 <p className="text-sm font-semibold text-white mb-0.5">
-                  Mensaje de Husaka
-                </p>
-                <p className="text-xs text-gray-300">
-                  Fundador de Anubis AI
+                  Mensaje de los Fundadores
                 </p>
               </div>
             </div>
