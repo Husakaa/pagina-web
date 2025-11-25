@@ -35,12 +35,24 @@ export const Hero = () => {
               >
                 Solicitar Auditoría
               </button>
-              <a
-                href="#services"
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  const element = document.getElementById('services');
+                  if (element) {
+                    const headerOffset = 80;
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - headerOffset;
+                    window.scrollTo({
+                      top: offsetPosition,
+                      behavior: 'smooth'
+                    });
+                  }
+                }}
                 className="px-8 py-4 bg-secondary text-secondary-foreground rounded-full text-lg font-medium hover:bg-secondary/80 transition-all hover:scale-105 active:scale-95"
               >
                 Ver Servicios
-              </a>
+              </button>
             </div>
 
             {/* Social Proof Strip */}

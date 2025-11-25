@@ -36,7 +36,7 @@ export const QualificationForm = ({ isOpen, onClose }: QualificationFormProps) =
         setIsLoading(true);
 
         try {
-            const webhookUrl = 'https://espacio-desarrollo-n8n.gqmpfk.easypanel.host/webhook-test/7688c6ba-3045-474e-96f2-012177cbdd2a';
+            const webhookUrl = 'https://espacio-desarrollo-n8n.gqmpfk.easypanel.host/webhook/7688c6ba-3045-474e-96f2-012177cbdd2a';
 
             await fetch(webhookUrl, {
                 method: 'POST',
@@ -142,7 +142,7 @@ export const QualificationForm = ({ isOpen, onClose }: QualificationFormProps) =
                                 <Label htmlFor="q-website" className="text-sm font-medium ml-1">Sitio Web <span className="text-muted-foreground font-normal text-xs">(Opcional)</span></Label>
                                 <Input
                                     id="q-website"
-                                    type="url"
+                                    type="text"
                                     placeholder="anubisaiagency.com"
                                     value={formData.website}
                                     onChange={(e) => setFormData({ ...formData, website: e.target.value })}

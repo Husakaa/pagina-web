@@ -56,11 +56,11 @@ export const Header = () => {
   };
 
   const navLinks = [
-    { name: 'Servicios', href: '/#services' },
-    { name: 'Proceso', href: '/#process' },
-    { name: 'Casos de Éxito', href: '/#sectors' },
-    { name: 'Precios', href: '/#pricing' },
     { name: 'Sobre Nosotros', href: '/#about' },
+    { name: 'Servicios', href: '/#services' },
+    { name: 'Casos de Éxito', href: '/#sectors' },
+    { name: 'Proceso', href: '/#process' },
+    { name: 'Precios', href: '/#pricing' },
   ];
 
   return (

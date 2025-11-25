@@ -24,9 +24,8 @@ export const Contact = () => {
         </div>
 
         <div className="max-w-3xl mx-auto bg-white/50 backdrop-blur-2xl rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden shadow-2xl border border-white/20">
-
           <div className="mb-10 flex flex-col items-center">
-            {/* Guarantee Badge - Now static and centered */}
+            {/* Guarantee Badge */}
             <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-sm mb-6">
               <ShieldCheck className="w-4 h-4 text-primary" />
               <span className="text-xs font-semibold tracking-wide text-foreground/80">GARANTÍA DE IMPLEMENTACIÓN</span>

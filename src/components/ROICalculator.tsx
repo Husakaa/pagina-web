@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Calculator, ArrowRight, X } from 'lucide-react';
+import { Calculator, ArrowRight, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { toast } from 'sonner';
+import { LeadForm } from './LeadForm';
 
 export const ROICalculator = () => {
     const [employees, setEmployees] = useState('');
@@ -13,6 +14,8 @@ export const ROICalculator = () => {
     const [email, setEmail] = useState('');
     const [showResult, setShowResult] = useState(false);
     const [isCalculated, setIsCalculated] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
 
     const calculateROI = (e: React.FormEvent) => {
         e.preventDefault();
@@ -21,15 +24,44 @@ export const ROICalculator = () => {
         const rate = parseFloat(hourlyRate);
 
         if (emp && hrs && rate) {
-            // Annual savings = Employees * Hours/Week * 52 weeks * Hourly Rate
             const annualSavings = emp * hrs * 52 * rate;
             setResult(annualSavings);
-            // Trigger email gate by setting a flag or just using the email state logic in render
-            // In my render logic: !showResult && !email -> Input Form
-            // !showResult && email -> Email Gate (Wait, my render logic uses 'email' state presence to show gate?)
-            // Actually, I need a state to say "Calculation Done, Waiting for Email".
-            // Let's use a new state 'isCalculated'.
             setIsCalculated(true);
+        }
+    };
+
+    const handleEmailSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email || !email.includes('@')) {
+            toast.error('Por favor, introduce un email válido.');
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            const webhookUrl = 'https://espacio-desarrollo-n8n.gqmpfk.easypanel.host/webhook-test/d200165b-000c-4f83-94bf-bb2d0a3c3651';
+
+            await fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email,
+                    employees,
+                    hoursPerWeek: hours,
+                    hourlyRate,
+                    estimatedAnnualSavings: result,
+                    timestamp: new Date().toISOString()
+                }),
+            });
+
+            toast.success('¡Informe enviado! Aquí tienes tu resultado.');
+            setShowResult(true);
+        } catch (error) {
+            console.error('Error sending data:', error);
+            toast.error('Hubo un error. Por favor, inténtalo de nuevo.');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -136,24 +168,32 @@ export const ROICalculator = () => {
                                         Hemos analizado tus datos. Introduce tu email para desbloquear tu informe.
                                     </p>
                                 </div>
-                                <div className="space-y-6 max-w-sm mx-auto">
+                                <form onSubmit={handleEmailSubmit} className="space-y-6 max-w-sm mx-auto">
                                     <Input
                                         type="email"
                                         placeholder="tu@email.com"
                                         required
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         className="h-14 text-lg text-center bg-white/50 border-gray-200 focus:border-primary/50 focus:ring-primary/20 rounded-xl"
-                                        onChange={(e) => {
-                                            if (e.target.value.includes('@')) {
-                                                setShowResult(true);
-                                            }
-                                        }}
                                     />
+                                    <Button
+                                        type="submit"
+                                        className="w-full text-lg h-14 rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:scale-[1.02]"
+                                        disabled={isLoading}
+                                    >
+                                        {isLoading ? (
+                                            <span className="flex items-center gap-2">
+                                                <Loader2 className="w-5 h-5 animate-spin" />
+                                                Enviando...
+                                            </span>
+                                        ) : 'Ver mis Resultados'}
+                                    </Button>
                                     <p className="text-sm text-muted-foreground">
                                         Te enviaremos también una guía de implementación.
                                     </p>
-                                </div>
-                            </div>
-                        ) : (
+                                </form>
+                            </div>) : (
                             <div className="text-center space-y-8 animate-fade-in py-4">
                                 <div className="space-y-2">
                                     <h3 className="text-2xl font-medium text-muted-foreground">Tu Potencial de Ahorro Anual</h3>
@@ -166,7 +206,10 @@ export const ROICalculator = () => {
                                 </p>
 
                                 <div className="pt-8 border-t border-border/50 space-y-4">
-                                    <Button className="w-full h-14 text-lg rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:scale-[1.02]" onClick={() => window.location.href = '#contact'}>
+                                    <Button
+                                        className="w-full h-14 text-lg rounded-xl shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all hover:scale-[1.02]"
+                                        onClick={() => setIsLeadFormOpen(true)}
+                                    >
                                         Quiero empezar a ahorrar
                                     </Button>
                                     <button
@@ -181,6 +224,7 @@ export const ROICalculator = () => {
                     </div>
                 </div>
             </div>
+            <LeadForm isOpen={isLeadFormOpen} onClose={() => setIsLeadFormOpen(false)} source="ROI Calculator" />
         </section>
     );
 };
