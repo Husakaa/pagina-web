@@ -40,7 +40,7 @@ export const ROICalculator = () => {
         setIsLoading(true);
 
         try {
-            const webhookUrl = 'https://espacio-desarrollo-n8n.gqmpfk.easypanel.host/webhook-test/d200165b-000c-4f83-94bf-bb2d0a3c3651';
+            const webhookUrl = 'https://espacio-desarrollo-n8n.gqmpfk.easypanel.host/webhook/d200165b-000c-4f83-94bf-bb2d0a3c3651';
 
             await fetch(webhookUrl, {
                 method: 'POST',
