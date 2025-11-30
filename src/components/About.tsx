@@ -26,8 +26,8 @@ export const About = () => {
             Anubis AI Agency
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed text-balance mb-12">
-            Somos una agencia boutique de inteligencia artificial en la Costa del Sol.
-            Combinamos expertise técnico con diseño estratégico para transformar negocios.
+            Somos una startup de inteligencia artificial en la Costa del Sol.
+            Combinamos ingeniería del software con IA y diseño estratégico para transformar negocios.
           </p>
 
           {/* Founder Video Placeholder */}
