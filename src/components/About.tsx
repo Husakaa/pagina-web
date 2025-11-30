@@ -1,6 +1,17 @@
+import { useState, useRef } from 'react';
 import { Award, Users, TrendingUp, Play } from 'lucide-react';
 
 export const About = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlay = () => {
+    if (videoRef.current) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    }
+  };
+
   const stats = [
     { icon: Award, value: '20+', label: 'Proyectos' },
     { icon: Users, value: '10+', label: 'Clientes' },
@@ -20,25 +31,38 @@ export const About = () => {
           </p>
 
           {/* Founder Video Placeholder */}
-          <div className="relative aspect-video rounded-2xl overflow-hidden bg-background shadow-xl border border-border group cursor-pointer max-w-2xl mx-auto">
-            {/* Placeholder for Founder Image */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-gray-800 flex items-center justify-center">
-              <Users className="w-32 h-32 text-white/10" />
-            </div>
+          <div
+            className="relative aspect-video rounded-2xl overflow-hidden bg-background shadow-xl border border-border group cursor-pointer max-w-2xl mx-auto"
+            onClick={!isPlaying ? handlePlay : undefined}
+          >
+            <video
+              ref={videoRef}
+              src="/video-presentacion.mp4"
+              className="absolute inset-0 w-full h-full object-cover"
+              controls={isPlaying}
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onEnded={() => setIsPlaying(false)}
+              playsInline
+            />
 
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-              <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 shadow-2xl group-hover:scale-110 transition-transform">
-                <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
-              </div>
-            </div>
+            {!isPlaying && (
+              <>
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors z-10">
+                  <div className="w-20 h-20 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 shadow-2xl group-hover:scale-110 transition-transform">
+                    <Play className="w-8 h-8 text-white ml-1" fill="currentColor" />
+                  </div>
+                </div>
 
-            <div className="absolute bottom-6 left-6 text-left">
-              <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
-                <p className="text-sm font-semibold text-white mb-0.5">
-                  Mensaje de los Fundadores
-                </p>
-              </div>
-            </div>
+                <div className="absolute bottom-6 left-6 text-left z-10">
+                  <div className="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10">
+                    <p className="text-sm font-semibold text-white mb-0.5">
+                      Mensaje de los Fundadores
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
