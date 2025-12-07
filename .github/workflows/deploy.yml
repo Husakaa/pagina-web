@@ -1,0 +1,13 @@
+name: Despliegue a VPS
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Llamar al Webhook del VPS
+        run: curl -X POST "${{ secrets.DEPLOY_URL }}"
