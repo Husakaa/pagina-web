@@ -101,6 +101,12 @@ export const Header = () => {
               {link.name}
             </a>
           ))}
+          <a
+            href="/login"
+            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+          >
+            Acceso Clientes
+          </a>
           <button
             onClick={() => setIsLeadFormOpen(true)}
             className="bg-primary text-primary-foreground px-6 py-2.5 rounded-full font-medium hover:opacity-90 transition-opacity"
@@ -132,6 +138,12 @@ export const Header = () => {
               {link.name}
             </a>
           ))}
+          <a
+            href="/login"
+            className="text-lg font-medium text-foreground/80 hover:text-primary transition-colors py-2 border-b border-border/50"
+          >
+            Acceso Clientes
+          </a>
           <button
             onClick={() => {
               setIsLeadFormOpen(true);
